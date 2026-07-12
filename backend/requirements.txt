@@ -1,0 +1,16 @@
+fastapi
+uvicorn[standard]
+motor
+beanie
+pyjwt
+passlib[bcrypt]
+bcrypt==4.0.1
+pydantic[email]
+pydantic-settings
+python-multipart
+python-dotenv
+pytest
+httpx
+google-generativeai
+openai
+mongomock-motor
