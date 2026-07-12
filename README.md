@@ -88,3 +88,28 @@ The primary objective of the AI Code Review Assistant is to automate, standardiz
    npm run dev
    ```
 5. Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
+
+## 🚀 Deployment Guide
+
+### Deploying the Frontend (Vercel)
+Vercel is the optimal platform for deploying Next.js applications. 
+
+1. Push your code to GitHub.
+2. Log in to [Vercel](https://vercel.com) and click **Add New Project**.
+3. Import your GitHub repository.
+4. **CRITICAL:** In the "Configure Project" screen, change the **Root Directory** from `./` to `frontend`.
+5. In the **Environment Variables** section, add your production backend URL:
+   - `NEXT_PUBLIC_API_URL` = `https://your-deployed-backend-url.com/api/v1`
+6. Click **Deploy**. Vercel will automatically detect Next.js and build the frontend.
+
+### Deploying the Backend (Render / Railway)
+*Note: We do not recommend deploying the FastAPI backend on Vercel because AI code generation can easily exceed Vercel's 10-15 second Serverless timeout limit.*
+
+1. Create a Web Service on a platform like [Render](https://render.com) or [Railway](https://railway.app).
+2. Connect your GitHub repository.
+3. Set the Root Directory to `backend` (if supported) OR configure the Build/Start commands:
+   - **Build Command:** `pip install -r backend/requirements.txt`
+   - **Start Command:** `uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT` (Make sure your paths align with the working directory)
+4. Add all required Environment Variables (`MONGO_URI`, `OPENAI_API_KEY`, etc.) in the dashboard.
+5. Deploy and grab the resulting URL to use as your `NEXT_PUBLIC_API_URL` in Vercel.
+
